@@ -22,7 +22,7 @@ with open("project.pto") as f:
     width = int(w.removeprefix("w"))
     height = int(h.removeprefix("h"))
 
-subprocess.run(["pto_var", "-o", "project.pto", "--anchor=0", "--opt=y1,p1,r1,TrX1,TrY1,TrZ1,Tpy1,Tpp1,v1,a1,b1,c1,d1,e1,g1,t1", "project.pto"], check=True)
+subprocess.run(["pto_var", "-o", "project.pto", "--anchor=0", "--opt=y1,p1,r1,Tpy1,Tpp1,v1,d1,e1,g1,t1", "project.pto"], check=True)
 
 with open("project.pto", "a") as f:
     for (x0, y0), (x1, y1) in zip(anchor_cp, remap_cp):
@@ -32,5 +32,5 @@ subprocess.run(["autooptimiser", "-o", "project.pto", "-n", "project.pto"], chec
 
 subprocess.run(["pano_modify", "-o", "project.pto", "-p", "0", "--fov=10", f"--canvas={width}x{height}", "--output-type=REMAPORIG", "project.pto"], check=True)
 
-subprocess.run(["nona", "-o", remap_output, "-i", "1", "-m", output_format, "project.pto"], check=True)
+subprocess.run(["nona", "-v", "-o", remap_output, "-i", "1", "-m", output_format, "project.pto"], check=True)
 
